@@ -3,7 +3,8 @@
 # Custom
 /.media
 /.static
-/.secrets/
+/.secrets
+.secrets
 
 
 ### Django ###
