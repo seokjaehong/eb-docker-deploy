@@ -12,17 +12,17 @@ COPY        .requirements /srv/.requirements
 WORKDIR     /srv
 RUN         pip install -r /srv/.requirements/dev.txt
 
+ENV         BUILD_MODE              dev
+ENV         DJANGO_SETTINGS_MODULE  config.settings.dev
+
 COPY        . /srv/project
 
-RUN         cp -f   /srv/project/.config/local/nginx.conf       /etc/nginx/nginx.conf &&\
-            cp -f   /srv/project/.config/local/nginx-app.conf   /etc/nginx/sites-available/ &&\
+RUN         cp -f   /srv/project/.config/${BUILD_MODE}/nginx.conf       /etc/nginx/nginx.conf &&\
+            cp -f   /srv/project/.config/${BUILD_MODE}/nginx-app.conf   /etc/nginx/sites-available/ &&\
             rm -f   /etc/nginx/sites-enabled/* &&\
             ln -sf  /etc/nginx/sites-available/nginx-app.conf   /etc/nginx/sites-enabled/
 
-RUN         cp -f   /srv/project/.config/local/supervisord.conf /etc/supervisor/conf.d/
+RUN         cp -f   /srv/project/.config/${BUILD_MODE}/supervisord.conf /etc/supervisor/conf.d/
 
-#sqllite db migrate , createsuperuser
-WORKDIR     /srv/project/app
-RUN         python manage.py migrate && python manage.py createsu
-
+#pkill
 CMD         pkill nginx; supervisord -n
