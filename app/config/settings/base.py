@@ -24,7 +24,7 @@ SECRETS_DIR = os.path.join(ROOT_DIR, '.secrets')
 SECRETS_BASE = os.path.join(SECRETS_DIR, 'base.json')
 SECRETS_LOCAL = os.path.join(SECRETS_DIR, 'local.json')
 SECRETS_DEV = os.path.join(SECRETS_DIR, 'dev.json')
-
+SECRETS_PRODUCTION = os.path.join(SECRETS_DIR, 'production.json')
 secrets = json.loads(open(SECRETS_BASE, 'rt').read())
 
 def set_config(obj,module_name=None, start=False):
@@ -97,15 +97,16 @@ def set_config(obj,module_name=None, start=False):
 setattr(sys.modules[__name__], 'raven', importlib.import_module('raven'))
 set_config(secrets,module_name=__name__, start=True)
 
-AWS_S3_ENDPOINT_URL ='http://s3.ap-northeast-2.amazonaws.com'
-AWS_DEFAULT_ACL = 'private'
 
 # print(f'SECRET_KEY:{getattr(sys.modules[__name__],"SECRET_KEY")}')
 # print(f'RAVEN_CONFIG:{getattr(sys.modules[__name__],"RAVEN_CONFIG")}')
 
-# Static
 STATIC_URL = '/static/'
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 # Application definition
 
 AUTH_USER_MODEL = 'members.User'
@@ -120,7 +121,6 @@ INSTALLED_APPS = [
     # Sentry
     'raven.contrib.django.raven_compat',
     'members',
-    'storages',
 ]
 
 MIDDLEWARE = [
