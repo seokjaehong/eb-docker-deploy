@@ -129,6 +129,7 @@ INSTALLED_APPS = [
     # Sentry
     'raven.contrib.django.raven_compat',
     'members',
+    'utils',
 ]
 
 MIDDLEWARE = [
