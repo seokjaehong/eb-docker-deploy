@@ -8,6 +8,10 @@ set_config(secrets, module_name=__name__, start=True)
 # print(getattr(sys.modules[__name__], 'DATABASES'))
 # DATABASES = secrets['DATABASES']
 
+secrets_base = json.loads(open(SECRETS_DEV, 'rt').read())
+# set_config(secrets_base, module_name=__name__, start=False)
+
+DATABASES = secrets_base['DATABASES']
 DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',

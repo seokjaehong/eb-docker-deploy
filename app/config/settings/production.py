@@ -1,10 +1,14 @@
 from .base import *
 
-secrets = json.loads(open(SECRETS_PRODUCTION, 'rt').read())
+# secrets = json.loads(open(SECRETS_PRODUCTION, 'rt').read())
+#
+# set_config(secrets, module_name=__name__, start=True)
+# # print(getattr(sys.modules[__name__], 'DATABASES'))
 
-set_config(secrets, module_name=__name__, start=True)
-# print(getattr(sys.modules[__name__], 'DATABASES'))
+secrets_base = json.loads(open(SECRETS_PRODUCTION, 'rt').read())
+# set_config(secrets_base, module_name=__name__, start=False)
 
+DATABASES = secrets_base['DATABASES']
 DEBUG = False
 ALLOWED_HOSTS = [
     'localhost',
