@@ -83,9 +83,10 @@ def set_config(obj, module_name=None, start=False):
             # 그 외의 경우 value를 평가한 값을 할당
             else:
                 obj[key] = eval_obj(value)
-            # set_config()가 처음 호출된 loop에서만 setattr()을 실행
+               # set_config()가 처음 호출된 loop에서만 setattr()을 실행
             if start:
                 setattr(sys.modules[module_name], key, value)
+
     # 전달된 객체가 'list'형태일 경우
     elif isinstance(obj, list):
         # list아이템을 순회하며

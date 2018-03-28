@@ -1,4 +1,4 @@
-FROM        devhsj/eb-docker:base
+FROM        devhsj/base2
 MAINTAINER  devhsj@gmail.com
 
 ENV         BUILD_MODE              production
