@@ -3,7 +3,7 @@ from .base import *
 
 secrets = json.loads(open(SECRETS_DEV, 'rt').read())
 
-set_config(secrets, module_name=__name__, start=True)
+# set_config(secrets, module_name=__name__, start=True)
 # print(set_config(secrets, module_name=__name__, start=True))
 # print(getattr(sys.modules[__name__], 'DATABASES'))
 # DATABASES = secrets['DATABASES']
