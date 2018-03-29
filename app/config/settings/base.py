@@ -26,7 +26,7 @@ SECRETS_LOCAL = os.path.join(SECRETS_DIR, 'local.json')
 SECRETS_DEV = os.path.join(SECRETS_DIR, 'dev.json')
 SECRETS_PRODUCTION = os.path.join(SECRETS_DIR, 'production.json')
 # secrets = json.loads(open(SECRETS_BASE, 'rt').read())
-secrets_base = json.loads(open(SECRETS_BASE, 'rt').read())
+SECRETS = json.loads(open(SECRETS_BASE, 'rt').read())
 TEMPLATE_DIR = os.path.join(ROOT_DIR, 'templates')
 
 
@@ -100,13 +100,13 @@ def set_config(obj, module_name=None, start=False):
 # raven모듈을 importlib를 사용해 가져온 후 현재 모듈에 'raven'이라는 이름으로 할당
 setattr(sys.modules[__name__], 'raven', importlib.import_module('raven'))
 # set_config(secrets, module_name=__name__, start=True)
-SECRET_KEY = secrets_base['SECRET_KEY']
+SECRET_KEY = SECRETS['SECRET_KEY']
 # print(f'SECRET_KEY:{getattr(sys.modules[__name__],"SECRET_KEY")}')
 # print(f'RAVEN_CONFIG:{getattr(sys.modules[__name__],"RAVEN_CONFIG")}')
 
 # Raven
 RAVEN_CONFIG = {
-    'dsn': secrets_base['RAVEN_DSN'],
+    'dsn': SECRETS['RAVEN_DSN'],
     'release': raven.fetch_git_sha(os.path.dirname(BASE_DIR)),
     # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
     # 'release': raven.fetch_git_sha(os.path.abspath(BASE_DIR)),
