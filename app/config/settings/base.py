@@ -13,7 +13,7 @@ import importlib
 import json
 import numbers
 import os
-# import raven
+import raven
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import sys
@@ -104,6 +104,11 @@ SECRET_KEY = SECRETS['SECRET_KEY']
 # print(f'SECRET_KEY:{getattr(sys.modules[__name__],"SECRET_KEY")}')
 # print(f'RAVEN_CONFIG:{getattr(sys.modules[__name__],"RAVEN_CONFIG")}')
 
+# Raven
+RAVEN_CONFIG = {
+    'dsn': SECRETS['RAVEN_DSN'],
+    'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+}
 STATIC_URL = '/static/'
 
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
