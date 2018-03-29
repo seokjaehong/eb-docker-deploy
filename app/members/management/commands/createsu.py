@@ -15,7 +15,7 @@ User = get_user_model()
 #             )
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-         if not User.objects.filter(username=settings.SECRETS['SUPERUSER_USERNAME']).exists():
+         if not User.objects.filter(username=settings.secrets_base['SUPERUSER_USERNAME']).exists():
             User.objects.create_superuser(
                 username=settings.SECRETS['SUPERUSER_USERNAME'],
                 password=settings.SECRETS['SUPERUSER_PASSWORD'],
