@@ -108,7 +108,8 @@ SECRET_KEY = secrets_base['SECRET_KEY']
 RAVEN_CONFIG = {
     'dsn': secrets_base['RAVEN_DSN'],
     # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
+    'release': raven.fetch_git_sha(os.path.abspath(BASE_DIR)),
+    # 'release': raven.fetch_git_sha(os.path.dirname(__file__)),
 }
 print(RAVEN_CONFIG)
 STATIC_URL = '/static/'
