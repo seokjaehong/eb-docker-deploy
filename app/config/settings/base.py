@@ -107,8 +107,9 @@ SECRET_KEY = secrets_base['SECRET_KEY']
 # Raven
 RAVEN_CONFIG = {
     'dsn': secrets_base['RAVEN_DSN'],
+    'release': raven.fetch_git_sha(os.path.dirname(BASE_DIR)),
     # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
-    'release': raven.fetch_git_sha(os.path.abspath(BASE_DIR)),
+    # 'release': raven.fetch_git_sha(os.path.abspath(BASE_DIR)),
     # 'release': raven.fetch_git_sha(os.path.dirname(__file__)),
 }
 print(RAVEN_CONFIG)
